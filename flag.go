@@ -60,9 +60,8 @@ type FlagLoader struct {
 func (f *FlagLoader) Load(s interface{}) error {
 	strct := structs.New(s)
 	structName := strct.Name()
-
-	flagSet := flag.NewFlagSet(structName, f.ErrorHandling)
-	f.flagSet = flagSet
+	
+	f.flagSet = flag.CommandLine
 
 	for _, field := range strct.Fields() {
 		f.processField(field.Name(), field)
